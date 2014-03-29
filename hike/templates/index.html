@@ -29,6 +29,9 @@
 	    src="static/js/geolocation.js">
     </script>
     <script type="text/javascript"
+	    src="static/js/distance.js">
+    </script>
+    <script type="text/javascript"
 	    src="static/js/elevation.js">
     </script>
     <script type="text/javascript"
@@ -43,7 +46,8 @@ function onLoad()
     var tracks = {{tracks}};
     load_tracks(tracks);
     load_POIs({{POIs|safe}});
-    drawElevation(tracks[1]);
+    drawElevation(tracks[2]);
+    distance_calculate(tracks[2], google.maps.TravelMode.DRIVING);
 }
 
 
@@ -54,5 +58,6 @@ function onLoad()
     <div id="map-canvas"></div>
     <br/>
     <div id="elevation_chart"></div>
+    <div id="distance_info"></div>
 </body>
 </html>
