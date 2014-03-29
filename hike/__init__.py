@@ -12,3 +12,7 @@ app = Flask(__name__)
 
 from hike import main, oaGooglePlus, profile
 
+<<<<<<< HEAD
+=======
+from hike import main, upload, sql
+>>>>>>> master

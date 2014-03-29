@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html>
     <head>
@@ -9,4 +10,55 @@
     <body>
         {% include view %}
     </body>
+=======
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript"
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&sensor=true">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/route.js">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/poi.js">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/map.js">
+    </script>
+    <script type="text/javascript">
+
+function load_track()
+{
+    var track = {{track}};
+    route_display(track);
+}
+
+function load_POIs()
+{
+    var t_poi = {{POIs|safe}}
+    $.each(t_poi, function(i, poi) {
+	poi_display(poi);
+    });
+}
+
+</script>
+</head>
+<body>
+  <div id="map-canvas"/>
+</body>
+>>>>>>> master
 </html>
