@@ -79,4 +79,4 @@ def getPois(road_id):
 
 def addUser(user):
     r = "INSERT INTO user(name, gender, email, age, lvl) VALUES (?, ?, ?, ?, ?);"
-    update_db(r, [user['name'], gender['gener'], email['email'], age['age'], lvl['lvl']])
+    update_db(r, [user['name'], user['gender'], user['email'], user['age'], user['lvl']])
