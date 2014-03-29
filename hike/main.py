@@ -1,3 +1,4 @@
+from flask import request, session, redirect, url_for, render_template
 from hike import app
 from flask import g, render_template
 import sql
@@ -13,9 +14,12 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-@app.route("/")
-def mainindex():
-    return "Helloworld"
+@app.route('/')
+def index():
+    if 'email' not in session:
+    	return render_template("index.html", view="home.html")
+    else:
+    	return render_template("index.html", view="welcome.html", session=session)
 
 @app.route("/test")
 def test():

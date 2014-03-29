@@ -7,7 +7,8 @@
 #
 
 from flask import Flask
+
 app = Flask(__name__)
 
+from hike import main, oaGooglePlus, profile , upload, sql
 
-from hike import main, upload, sql
