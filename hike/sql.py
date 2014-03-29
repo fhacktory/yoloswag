@@ -50,6 +50,23 @@ def getRoad(road_id):
     row = query_db(r, [road_id], one=True)
     return row[0]
 
+def getRoads():
+    r = ('SELECT points '
+         'FROM roads ')
+    row = query_db(r)
+    return [r[0] for r in row]
+
+def getAllPois():
+    Pois = namedtuple("Pois", "position name picture type")
+    r = ('SELECT position, name, picture, type '
+         'FROM pois')
+    row = query_db(r)
+    pois = [Pois(*r)._asdict() for r in row]
+    for p in pois:
+        p["position"] = json.loads(p["position"])
+    return pois
+
+
 def getPois(road_id):
     Pois = namedtuple("Pois", "position name picture type")
     r = ('SELECT position, name, picture, type '
