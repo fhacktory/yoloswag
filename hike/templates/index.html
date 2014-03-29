@@ -35,8 +35,8 @@
 function onLoad()
 {
     geolocation_setCurrentPosition();
-    load_tracks();
-    load_POIs();
+    load_tracks({{tracks}});
+    load_POIs({{POIs|safe}});
 }
 
 

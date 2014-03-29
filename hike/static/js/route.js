@@ -79,9 +79,8 @@ function route_display(track)
     m_end.setMap(map);
 }
 
-function load_tracks()
+function load_tracks(tracks)
 {
-    var tracks = {{tracks}};
     $.each(tracks, function(i, track) {
 	route_display(track);
     });
