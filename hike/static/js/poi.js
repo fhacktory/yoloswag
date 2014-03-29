@@ -34,3 +34,11 @@ function poi_display(poi)
     });
     marker.setMap(map);
 }
+
+function load_POIs()
+{
+    var t_poi = {{POIs|safe}}
+    $.each(t_poi, function(i, poi) {
+	poi_display(poi);
+    });
+}

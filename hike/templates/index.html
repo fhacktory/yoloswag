@@ -24,25 +24,21 @@
 	    src="static/js/poi.js">
     </script>
     <script type="text/javascript"
+	    src="static/js/geolocation.js">
+    </script>
+    <script type="text/javascript"
 	    src="static/js/map.js">
     </script>
     <script type="text/javascript">
 
-function load_tracks()
+
+function onLoad()
 {
-    var tracks = {{tracks}};
-    $.each(tracks, function(i, track) {
-	route_display(track);
-    });
+    geolocation_setCurrentPosition();
+    load_tracks();
+    load_POIs();
 }
 
-function load_POIs()
-{
-    var t_poi = {{POIs|safe}}
-    $.each(t_poi, function(i, poi) {
-	poi_display(poi);
-    });
-}
 
 </script>
 </head>
