@@ -50,10 +50,10 @@ def callback():
             grant_type='authorization_code')
         r = requests.post(token_uri, data=data)
         # Step 3
-        access_token = r.json()['access_token']
-        try:
+        try:    
+            access_token = r.json()['access_token']
             r = requests.get(profile_uri, params={'access_token': access_token})
-        except
+        except:
             redirect(url_for('login'))
         session['email'] = r.json().get('email', '')
         session['name'] = r.json().get('name', '')
