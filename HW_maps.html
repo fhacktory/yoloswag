@@ -10,15 +10,34 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&sensor=true">
     </script>
     <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(45.750000, 4.850000),
-          zoom: 8
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
+    function initialize() {
+	var mapOptions = {
+	    center: new google.maps.LatLng(45.750000, 4.850000),
+	    zoom: 8
+	};
+	var map = new google.maps.Map(document.getElementById("map-canvas"),
+				      mapOptions);
+	
+	var flightPlanCoordinates = [
+	    new google.maps.LatLng(45.7500, 4.8500),
+	    new google.maps.LatLng(46.7500, 4.8500),
+	    new google.maps.LatLng(47.7500, 5.8500),
+	    new google.maps.LatLng(44.7500, 5.8500),
+	    new google.maps.LatLng(44.7500, 3.8500),
+	];
+	var flightPath = new google.maps.Polyline({
+	    path: flightPlanCoordinates,
+	    geodesic: true,
+	    strokeColor: '#0000FF',
+	    strokeOpacity: 0.8,
+	    strokeWeight: 4
+	});
+	
+	flightPath.setMap(map);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
     </script>
   </head>
   <body>
