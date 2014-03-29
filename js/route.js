@@ -52,4 +52,20 @@ function make_marker_end(track)
     google.maps.event.addListener(marker, 'click', toggleBounce);
     return marker;
 }
-      
+
+function route_display(track)
+{
+    var route = json_to_coord(track);
+    var path = new google.maps.Polyline({
+	path: route,
+	geodesic: true,
+	strokeColor: '#0000FF',
+	strokeOpacity: 0.8,
+	strokeWeight: 4
+    });
+    path.setMap(map);
+    var m_start = make_marker_start(track);
+    var m_end = make_marker_end(track);
+    m_start.setMap(map);
+    m_end.setMap(map);
+}
