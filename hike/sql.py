@@ -8,6 +8,7 @@
 from flask import g
 from collections import namedtuple
 import sqlite3
+import json
 
 class SQLError(Exception):
     pass
