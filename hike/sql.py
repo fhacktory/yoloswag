@@ -54,7 +54,7 @@ def getRoads():
     r = ('SELECT points '
          'FROM roads ')
     row = query_db(r)
-    return [r[0] for r in row]
+    return [json.loads(r[0]) for r in row]
 
 def getAllPois():
     Pois = namedtuple("Pois", "position name picture type")
