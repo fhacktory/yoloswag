@@ -27,6 +27,52 @@ function json_to_coord(track)
     });
     return ret
 }
+
+function toggleBounce()
+{
+    if (this.getAnimation() != null)
+	this.setAnimation(null);
+    else
+	this.setAnimation(google.maps.Animation.BOUNCE);
+}
+
+function make_marker_start(track)
+{
+    var image = {
+	url: 'img/start.png',
+	size: new google.maps.Size(32, 32),
+	origin: new google.maps.Point(0,0),
+	anchor: new google.maps.Point(10, 30)
+    };
+    var marker = new google.maps.Marker({
+        icon: image,
+	draggable:false,
+	animation: google.maps.Animation.DROP,
+	position: new google.maps.LatLng(track[0][0], track[0][1]),
+        title: "start"
+    });
+    google.maps.event.addListener(marker, 'click', toggleBounce);
+    return marker;
+}
+
+function make_marker_end(track)
+{
+    var image = {
+	url: 'img/end.png',
+	size: new google.maps.Size(32, 32),
+	origin: new google.maps.Point(0,0),
+	anchor: new google.maps.Point(10, 30)
+    };
+    var marker = new google.maps.Marker({
+	icon: image,
+	draggable:false,
+	animation: google.maps.Animation.DROP,
+	position: new google.maps.LatLng(track[track.length - 1][0], track[track.length - 1][1]),
+	title: 'end'
+    });
+    google.maps.event.addListener(marker, 'click', toggleBounce);
+    return marker;
+}
       
 function initialize() {
     var mapOptions = {
@@ -36,9 +82,13 @@ function initialize() {
     };
     var map = new google.maps.Map(document.getElementById("map-canvas"),
 				  mapOptions);
-    
-    var route = json_to_coord([[45.7500, 4.8500],[46.7500, 4.8500],[47.7500, 5.8500],[44.7500, 5.8500],[44.7500, 3.8500]]);
-    
+    var track = [[45.7500, 4.8500],[46.7500, 4.8500],[47.7500, 5.8500],[44.7500, 5.8500],[44.7500, 3.8500]];
+    var route = json_to_coord(track);
+    var m_start = make_marker_start(track);
+    var m_end = make_marker_end(track);
+    m_start.setMap(map);
+    m_end.setMap(map);
+
     var flightPath = new google.maps.Polyline({
 	path: route,
 	geodesic: true,
