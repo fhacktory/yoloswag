@@ -54,4 +54,4 @@ def getPois(road_id):
     r = ('SELECT position, name, picture, type '
          'FROM pois WHERE road_id = ?')
     row = query_db(r, [road_id])
-    return [Pois(*r) for r in row
+    return [Pois(*r) for r in row]
