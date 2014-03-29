@@ -77,5 +77,5 @@ def getPois(road_id):
     return pois
 
 def addUser(user):
-    r = "INSERT INTO user(name, gender, email) VALUES (?, ?, ?);"
+    r = "INSERT INTO users(name, gender, email) VALUES (?, ?, ?);"
     update_db(r, [user['name'], user['gener'], user['email']])
