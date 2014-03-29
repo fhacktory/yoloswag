@@ -1,7 +1,8 @@
-from flask import request, session, redirect, url_for, sql
+from flask import request, session, redirect, url_for
 from hike import app
 import urllib
 import requests
+import sql
 
 # app.secret_key = 'iwonttellyou'
 
