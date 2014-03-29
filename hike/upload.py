@@ -23,9 +23,9 @@ def upload():
         kml = parser.fromstring(road["kml"])
     except XMLSyntaxError as e:
         abort(400)
-    points = {}
+    track = {}
     for placemark in kml.Document.Placemark:
         if hasattr(placemark, "LineString"):
-            points[placemark.name] = json.dumps([[float(x) for x in c.split(",")] for c in placemark.LineString.coordinates.text.split()])
-    sql.addRoads(points)
-    return(str(points))
+            track[placemark.name] = json.dumps([[float(x) for x in c.split(",")] for c in placemark.LineString.coordinates.text.split()])
+    sql.addRoads(track)
+    return(str(track))
