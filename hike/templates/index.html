@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">    
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript"
 	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&sensor=true">
     </script>
@@ -29,6 +29,9 @@
 	    src="static/js/geolocation.js">
     </script>
     <script type="text/javascript"
+	    src="static/js/elevation.js">
+    </script>
+    <script type="text/javascript"
 	    src="static/js/map.js">
     </script>
     <script type="text/javascript">
@@ -37,8 +40,10 @@
 function onLoad()
 {
     geolocation_setCurrentPosition();
-    load_tracks({{tracks}});
+    var tracks = {{tracks}};
+    load_tracks(tracks);
     load_POIs({{POIs|safe}});
+    drawElevation(tracks[1]);
 }
 
 
@@ -46,6 +51,8 @@ function onLoad()
 </head>
 <body>
     {% include view %}
-  <div id="map-canvas"/>
+    <div id="map-canvas"></div>
+    <br/>
+    <div id="elevation_chart"></div>
 </body>
 </html>
