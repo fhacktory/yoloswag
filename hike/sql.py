@@ -51,7 +51,7 @@ def getRoad(road_id):
 
 def getPois(road_id):
     Pois = namedtuple("position", "name", "picture", "type")
-    r = ('SELECT position, name, picture '
+    r = ('SELECT position, name, picture, type '
          'FROM pois WHERE road_id = ?')
     row = query_db(r, [road_id])
     return [Pois(*r) for r in row[0]]
