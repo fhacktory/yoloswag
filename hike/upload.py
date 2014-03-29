@@ -11,7 +11,7 @@ from pykml import parser
 from flask import request, abort
 import pykml
 from lxml.etree import XMLSyntaxError
-
+import json
 
 @app.route("/upload", methods=["POST"])
 def upload():
@@ -26,7 +26,6 @@ def upload():
     points = {}
     for placemark in kml.Document.Placemark:
         if hasattr(placemark, "LineString"):
-            points[placemark.name] = [[float(x) for x in c.split(",")] for c in placemark.LineString.coordinates.text.split()]
+            points[placemark.name] = json.dumps([[float(x) for x in c.split(",")] for c in placemark.LineString.coordinates.text.split()])
     sql.addRoads(points)
     return(str(points))
-    
