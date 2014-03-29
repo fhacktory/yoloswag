@@ -57,5 +57,5 @@ def getPois(road_id):
     row = query_db(r, [road_id])
     pois = [Pois(*r)._asdict() for r in row]
     for p in pois:
-        p["position"] = json.loads(p["position"])[::-1]
+        pois = json.loads(p["position"])
     return pois

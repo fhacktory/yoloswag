@@ -26,6 +26,8 @@ def upload():
     track = {}
     for placemark in kml.Document.Placemark:
         if hasattr(placemark, "LineString"):
-            track[placemark.name] = json.dumps([[float(x) for x in c.split(",")] for c in placemark.LineString.coordinates.text.split()])
+            pois = [[float(x) for x in c.split(",")] for c in placemark.LineString.coordinates.text.split()]
+            pois = [[p[1], p[0], p[2]] for p in pois]
+            track[placemark.name] = json.dumps(pois)
     sql.addRoads(track)
     return(str(track))
