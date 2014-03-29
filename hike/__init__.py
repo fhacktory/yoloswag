@@ -10,4 +10,4 @@ from flask import Flask
 app = Flask(__name__)
 
 
-from hike import main
+from hike import main, upload, sql
