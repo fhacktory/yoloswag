@@ -6,6 +6,7 @@
 # lu.k.philippe@gmail.com
 #
 from flask import g
+from collections import namedtuple
 import sqlite3
 
 class SQLError(Exception):
@@ -34,14 +35,23 @@ def query_db(query, args=(), one=False):
 
 
 def addRoads(roads):
-    for road_name,points in roads.iteritems():
+    for road_name,track in roads.iteritems():
         cursor = get_db().cursor()
         r = "INSERT INTO roads(name, points) VALUES (?, ?);"
-        update_db(r, [str(road_name), str(points)])
+        update_db(r, [str(road_name), str(track)])
 
 
-def getRoads():
+def getRoad(road_id):
     r = ('SELECT points '
-         'FROM roads LIMIT 1 ')
-    row = query_db(r, one=True)
+         'FROM roads '
+         'WHERE id = ? '
+         'LIMIT 1 ')
+    row = query_db(r, [road_id], one=True)
     return row[0]
+
+def getPois(road_id):
+    Pois = namedtuple("position", "name", "picture", "type")
+    r = ('SELECT position, name, picture '
+         'FROM pois WHERE road_id = ?')
+    row = query_db(r, [road_id])
+    return [Pois(*r) for r in row[0]]
