@@ -18,4 +18,4 @@ def mainindex():
 
 @app.route("/test")
 def test():
-    return render_template("index.html", points=sql.getRoads())
+    return render_template("index.html", track=sql.getRoads())

@@ -1,3 +1,12 @@
+function invert_Lat_Lon(track)
+{
+    var ret = []
+    $.each(track, function(i, item) {
+	ret.push([item[1], item[0], item[2]]);
+    });
+    return ret
+}
+
 function json_to_coord(track)
 {
     var ret = []

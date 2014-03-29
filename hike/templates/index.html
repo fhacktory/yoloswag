@@ -23,6 +23,24 @@
     <script type="text/javascript"
 	    src="static/js/map.js">
     </script>
+    <script type="text/javascript">
+
+function load_track()
+{
+    var track = {{track}};
+    t = invert_Lat_Lon({{track}});
+    route_display(t);
+}
+
+function load_POIs()
+{
+    var t_poi = {{POIs}}
+    $.each(POIs, function(i, poi) {
+	poi_display(poi);
+    });
+}
+
+</script>
 </head>
 <body>
   <div id="map-canvas"/>
