@@ -22,7 +22,6 @@ def get_db():
         db = g._database = connect_db()
     return db
 
-
 def update_db(query, args=()):
     db = get_db()
     db.execute(query, args)
@@ -78,5 +77,5 @@ def getPois(road_id):
     return pois
 
 def addUser(user):
-    r = "INSERT INTO user(name, gender, email) VALUES (?, ?, ?,);"
-    update_db(r, [user['name'], user['gener'], user['email'])
+    r = "INSERT INTO user(name, gender, email) VALUES (?, ?, ?);"
+    update_db(r, [user['name'], user['gener'], user['email']])
