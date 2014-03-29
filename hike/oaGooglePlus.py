@@ -52,10 +52,9 @@ def callback():
         # Step 3
         access_token = r.json()['access_token']
         r = requests.get(profile_uri, params={'access_token': access_token})
-        session['email'] = r.json()['email']
-        session['name'] = r.json()['name']
-        session['family_name'] = r.json()['family_name']
-        session['gener'] = r.json()['gender']
+        session['email'] = r.json().get('email', '')
+        session['name'] = r.json().get('name', '')
+        session['gener'] = r.json().get('gender', '' )
         sql.addUser(session)
         return redirect(url_for('index'))
     else:
