@@ -78,3 +78,10 @@ function route_display(track)
     m_start.setMap(map);
     m_end.setMap(map);
 }
+
+function load_tracks(tracks)
+{
+    $.each(tracks, function(i, track) {
+	route_display(track);
+    });
+}
