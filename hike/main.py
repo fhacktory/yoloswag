@@ -1,5 +1,5 @@
 from hike import app
-from flask import g
+from flask import g, render_template
 import sql
 
 @app.before_request
@@ -15,3 +15,8 @@ def close_connection(exception):
 @app.route("/")
 def mainindex():
     return "Helloworld"
+
+
+@app.route("/test")
+def mainindex2():
+    return render_template("index.html")

@@ -18,7 +18,7 @@ function toggleBounce()
 function make_marker_start(track)
 {
     var image = {
-	url: 'img/start.png',
+	url: 'static/img/start.png',
 	size: new google.maps.Size(32, 32),
 	origin: new google.maps.Point(0,0),
 	anchor: new google.maps.Point(10, 30)
@@ -37,7 +37,7 @@ function make_marker_start(track)
 function make_marker_end(track)
 {
     var image = {
-	url: 'img/end.png',
+	url: 'static/img/end.png',
 	size: new google.maps.Size(32, 32),
 	origin: new google.maps.Point(0,0),
 	anchor: new google.maps.Point(10, 30)
