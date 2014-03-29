@@ -1,13 +1,10 @@
 from hike import app
-from hike import 
-@app.route('/user/<nickname>')
-def user(nickname):
-    if not session['name']:
-        flash('User ' + nickname + ' not found.')
-        return redirect(url_for('index'))
-    posts = [
-        { 'author': user, 'body': 'Test post #1' },
-        { 'author': user, 'body': 'Test post #2' }
-    ]
-    return render_template('user.html',
-        user = user)
+
+@app.route('/user/<idUser:int>')
+def user_profile(idUser = 0):
+    if idUser == 0
+        abort(404)
+    return render_template("index.html", view="profile.html")
+
+
+ 

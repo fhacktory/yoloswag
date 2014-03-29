@@ -10,9 +10,5 @@ from flask import Flask
 
 app = Flask(__name__)
 
-from hike import main, oaGooglePlus, profile
+from hike import main, oaGooglePlus, profile , upload, sql
 
-<<<<<<< HEAD
-=======
-from hike import main, upload, sql
->>>>>>> master

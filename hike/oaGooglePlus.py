@@ -55,6 +55,7 @@ def callback():
         session['name'] = r.json()['name']
         session['family_name'] = r.json()['family_name']
         session['gener'] = r.json()['gender']
+        sql.addUser(session)
         return redirect(url_for('index'))
     else:
         return 'ERROR'
