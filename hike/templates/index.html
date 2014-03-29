@@ -28,10 +28,12 @@
     </script>
     <script type="text/javascript">
 
-function load_track()
+function load_tracks()
 {
-    var track = {{track}};
-    route_display(track);
+    var tracks = {{tracks}};
+    $.each(tracks, function(i, track) {
+	route_display(track);
+    });
 }
 
 function load_POIs()
