@@ -51,7 +51,10 @@ def callback():
         r = requests.post(token_uri, data=data)
         # Step 3
         access_token = r.json()['access_token']
-        r = requests.get(profile_uri, params={'access_token': access_token})
+        try:
+            r = requests.get(profile_uri, params={'access_token': access_token})
+        except
+            redirect(url_for('login'))
         session['email'] = r.json().get('email', '')
         session['name'] = r.json().get('name', '')
         session['gener'] = r.json().get('gender', '' )
