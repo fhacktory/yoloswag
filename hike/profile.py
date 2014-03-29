@@ -1,14 +1,5 @@
 from hike import app
-
-
-# def recordUser(session):
-# 	name = session(['name'])
-# 	family_name = session(['family_name'])
-# 	email = session(['email'])
-# 	gender = session(['gender'])
-#     return
-
-
+from hike import 
 @app.route('/user/<nickname>')
 def user(nickname):
     if not session['name']:
