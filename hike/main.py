@@ -1,6 +1,7 @@
 from hike import app
 from flask import g, render_template
 import sql
+import json
 
 @app.before_request
 def before_request():
@@ -18,4 +19,5 @@ def mainindex():
 
 @app.route("/test")
 def test():
-    return render_template("index.html", track=sql.getRoads())
+    pois = json.dumps(sql.getPois(1))
+    return render_template("index.html", track=sql.getRoad(1), POIs=pois)

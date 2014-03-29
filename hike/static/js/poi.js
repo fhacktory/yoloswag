@@ -3,26 +3,24 @@ function get_poi_image(type)
     var image = {
 	size: new google.maps.Size(32, 32),
 	origin: new google.maps.Point(0,0),
-	anchor: new google.maps.Point(10, 30)
+	anchor: new google.maps.Point(10, 30),
     };
-
     switch (type)
     {
     case 0:
-    image = {
-	url: 'static/img/poi.png'
-    };
+	image.url = 'static/img/poi.png';
 	break;
     case 1:
-    image = {
-	url: 'static/img/poi.png'
-    };
+	image.url = 'static/img/poi.png';
 	break;
     case 2:
-    image = {
-	url: 'static/img/poi.png'
-    };
-	return image;
+	image.url = 'static/img/poi.png';
+	break;
+    case 3:
+	image.url = 'static/img/poi.png';
+	break;
+    }
+    return image;
 }
 
 function poi_display(poi)
@@ -34,4 +32,5 @@ function poi_display(poi)
 	position: new google.maps.LatLng(poi.position[0], poi.position[1]),
         title: poi.name
     });
+    marker.setMap(map);
 }

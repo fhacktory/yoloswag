@@ -21,6 +21,9 @@
 	    src="static/js/route.js">
     </script>
     <script type="text/javascript"
+	    src="static/js/poi.js">
+    </script>
+    <script type="text/javascript"
 	    src="static/js/map.js">
     </script>
     <script type="text/javascript">
@@ -28,14 +31,13 @@
 function load_track()
 {
     var track = {{track}};
-    t = invert_Lat_Lon({{track}});
-    route_display(t);
+    route_display(track);
 }
 
 function load_POIs()
 {
-    var t_poi = {{POIs}}
-    $.each(POIs, function(i, poi) {
+    var t_poi = {{POIs|safe}}
+    $.each(t_poi, function(i, poi) {
 	poi_display(poi);
     });
 }
