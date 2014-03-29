@@ -38,3 +38,10 @@ def addRoads(roads):
         cursor = get_db().cursor()
         r = "INSERT INTO roads(name, points) VALUES (?, ?);"
         update_db(r, [str(road_name), str(points)])
+
+
+def getRoads():
+    r = ('SELECT points '
+         'FROM roads LIMIT 1 ')
+    row = query_db(r, one=True)
+    return row[0]

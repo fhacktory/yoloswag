@@ -16,7 +16,6 @@ def close_connection(exception):
 def mainindex():
     return "Helloworld"
 
-
 @app.route("/test")
-def mainindex2():
-    return render_template("index.html")
+def test():
+    return render_template("index.html", points=sql.getRoads())
