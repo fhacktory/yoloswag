@@ -11,13 +11,22 @@ function get_poi_image(type)
 	image.url = 'static/img/poi.png';
 	break;
     case 1:
-	image.url = 'static/img/poi.png';
+	image.url = 'static/img/pov.png';
 	break;
     case 2:
-	image.url = 'static/img/poi.png';
+	image.url = 'static/img/source.png';
 	break;
     case 3:
-	image.url = 'static/img/poi.png';
+	image.url = 'static/img/watertap.png';
+	break;
+    case 4:
+	image.url = 'static/img/pass.png';
+	break;
+    case 5:
+	image.url = 'static/img/summit2.png';
+	break;
+    case 6:
+	image.url = 'static/img/parking.png';
 	break;
     }
     return image;
