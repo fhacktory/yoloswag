@@ -124,7 +124,11 @@
 											<div class="popper-content hide">
 <!-- INPUT HERE -->
 											</div>
+
 										</div>
+											  <label>Search zone (KM): </label><input id="radius" value="250" type="range" min="0" max="1000" oninput="document.RADIUS = this.value; refresh()" />
+											  <label>Lenght Min (KM): </label><input id="minDistance" value="0" type="range" min="0" max="500" onchange="document.MIN = this.value; refresh()" />
+											  <label>Lenght Max (KM): </label><input id="maxDistance" value="50" type="range" min="0" max="500" onchange="document.MAX = this.value; refresh()"/>
 									</div>
 								</div>
 							</div>
@@ -155,9 +159,6 @@
 								</div>
 							</div>
 						</div>
-											  <label>Search zone (KM): </label><input id="radius" value="250" type="range" min="0" max="1000" oninput="document.RADIUS = this.value; refresh()" />
-											  <label>Lenght Min (KM): </label><input id="minDistance" value="0" type="range" min="0" max="500" onchange="document.MIN = this.value; refresh()" />
-											  <label>Lenght Max (KM): </label><input id="maxDistance" value="50" type="range" min="0" max="500" onchange="document.MAX = this.value; refresh()"/>
 					</div>
 
 					<script src="static/js/jquery-ui-1.10.3.custom.min.js"></script>
