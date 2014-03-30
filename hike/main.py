@@ -14,10 +14,11 @@ def close_connection(exception):
         db.close()
 
 @app.route("/")
-def mainindex():
-    return "Helloworld"
+def home():
+	return render_template("index.html")
 
-@app.route("/test")
+@app.route("/map")
 def test():
     pois = json.dumps(sql.getPois(1))
-    return render_template("index.html", track=sql.getRoad(1), POIs=pois)
+    return render_template("map.html", track=sql.getRoad(1), POIs=pois)
+# <div id="map-canvas"/>
