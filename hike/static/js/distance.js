@@ -34,3 +34,22 @@ function distance_callback(response, status) {
     }
 //    return [dest.distance, dest.duration];
 }
+
+function inRadius(from, marker, radius)
+{
+    var center = new google.maps.Marker({
+	map: map,
+	position: from
+    });
+//    circle = new google.maps.Circle({center:center.getPosition(),
+//				     radius: radius,
+//				     fillOpacity: 0.35,
+//				     fillColor: "#FF0000",
+//				     map: map});
+    var bounds = new google.maps.LatLngBounds();
+    var dist = google.maps.geometry.spherical.computeDistanceBetween(from, marker);
+    if (dist < radius)
+	return true;
+    else
+	return false;
+}

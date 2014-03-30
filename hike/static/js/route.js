@@ -64,7 +64,7 @@ function make_marker_end(track)
 
 function route_display(track)
 {
-    var route = json_to_coord(track);
+    var route = json_to_coord(track.points);
     var path = new google.maps.Polyline({
 	path: route,
 	geodesic: true,
@@ -73,15 +73,20 @@ function route_display(track)
 	strokeWeight: 4
     });
     path.setMap(map);
-    var m_start = make_marker_start(track);
-    var m_end = make_marker_end(track);
+    var m_start = make_marker_start(track.points);
+    var m_end = make_marker_end(track.points);
     m_start.setMap(map);
     m_end.setMap(map);
 }
 
-function load_tracks(tracks)
+function load_tracks(tracks, radius)
 {
+    console.log(map);
     $.each(tracks, function(i, track) {
-	route_display(track);
+	start = new google.maps.LatLng(track.start[0], track.start[1]);
+	if (radius <= 0 || inRadius(currentPosition, start, radius))
+	{
+	    route_display(track);
+	}
     });
 }

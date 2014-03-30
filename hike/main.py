@@ -14,14 +14,19 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-@app.route('/')
+@app.route("/")
+def home():
+	return render_template("index.html")
+
+@app.route('/test')
 def index():
     if 'email' not in session:
     	return render_template("index.html", view="home.html")
     else:
     	return render_template("index.html", view="welcome.html", session=session)
 
-@app.route("/test")
-def test():
-    pois = json.dumps(sql.getPois(1))
-    return render_template("index.html", tracks=sql.getRoads(), POIs=pois, view="home.html")
+@app.route("/map")
+def map():
+    pois = json.dumps(sql.getPois())
+    roads = json.dumps(sql.getRoads())
+    return render_template("map.html", tracks=roads, POIs=pois)

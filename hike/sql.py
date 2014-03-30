@@ -34,11 +34,13 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-def addRoads(roads):
-    for road_name,track in roads.iteritems():
-        cursor = get_db().cursor()
-        r = "INSERT INTO roads(name, points) VALUES (?, ?);"
-        update_db(r, [str(road_name), str(track)])
+def addRoad(road):
+    r = "INSERT INTO roads(name, points, start, end, distance) VALUES (?, ?, ? ,?, ?);"
+    update_db(r, [road["name"], json.dumps(road["tracks"]), road["start"], road["end"], road["distance"]])
+
+def addPoi(poi):
+    r = "INSERT INTO poi(name, positionm type) VALUES (?, ?, ?);"
+    update_db(r, [poi["title"], json.dumps(road["position"]), road["type"]])
 
 
 def getRoad(road_id):
@@ -47,15 +49,24 @@ def getRoad(road_id):
          'WHERE id = ? '
          'LIMIT 1 ')
     row = query_db(r, [road_id], one=True)
-    return row[0]
+    return row
 
 def getRoads():
-    r = ('SELECT points '
+    r = ('SELECT name, points, start, end, distance '
          'FROM roads ')
     row = query_db(r)
-    return [json.loads(r[0]) for r in row]
+    l = list()
+    for r in row:
+        road = {}
+        road["name"] = r[0]
+        road["points"] = json.loads(r[1]) if r[1] else ""
+        road["start"] = json.loads(r[2]) if r[2] else ""
+        road["end"] = json.loads(r[3]) if r[3] else ""
+        road["distance"] = r[4]
+        l.append(road)
+    return l
 
-def getPois(road_id):
+def getPois():
     Pois = namedtuple("Pois", "position name picture type")
     r = ('SELECT position, name, picture, type '
          'FROM pois')
@@ -66,5 +77,16 @@ def getPois(road_id):
     return pois
 
 def addUser(user):
-    r = "INSERT INTO users(name, gender, email) VALUES (?, ?, ?);"
+    r = ("REPLACE INTO users(name, gender, email) VALUES (?, ?, ?);")
     update_db(r, [user['name'], user['gener'], user['email']])
+
+def getId(self):
+    r = ("SELECT id FROM users WHERE id = ?;")
+    uid = query_db(r, [self], one=True)
+    return uid is not None
+
+def getSeek(seek):
+    r = ("SELECT name, points FROM roads WHERE name LIKE (?)")
+    ns = query_db(r, ["%%%s%%" %seek["roads"]] )
+    ns = [n[0] for n in ns]
+    return ns
