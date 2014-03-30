@@ -147,9 +147,7 @@ width: 18px;
 }
 
 .footer {
-padding-bottom: 50px;
-float: left;
-width: 100%;
+position: absolute;
 bottom: 0;
-  height: 4em;
+width: 100%;
 }

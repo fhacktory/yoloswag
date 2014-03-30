@@ -24,7 +24,7 @@
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="https://www.google.com/jsapi"></script>
       <script type="text/javascript"
-	      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&libraries=geometry&sensor=true">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&libraries=geometry&sensor=true">
       </script>
       <script type="text/javascript"
       src="static/js/route.js">
@@ -142,28 +142,29 @@
      </div>
    </div>
 
-    <!-- SignIn -->
-    <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-body text-center">
-            <div class="signup-title" id="myModalLabel">Login</div>
-            <span class="signup-subtitle">Quick Sign In</span>
-            <span id="signinButton">
-              <div id="gSignInWrapper">
-                <div id="customBtn" class="customGPlusSignIn">
-                 <span class="icon"></span>
-                 <span class="buttonText"><a style="color:white;" href="/login">Sign In using Google +</a></span>
-               </div>
+   <!-- SignIn -->
+   <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="signup-title" id="myModalLabel">Login</div>
+          <span class="signup-subtitle">Quick Sign In</span>
+          <span id="signinButton">
+            <div id="gSignInWrapper">
+              <div id="customBtn" class="customGPlusSignIn">
+               <span class="icon"></span>
+               <span class="buttonText"><a style="color:white;" href="/login">Sign In using Google +</a></span>
              </div>
-           </span>
-           <div class="signup-footer">You don't have an account? <a data-target="#signup" href="#signup">Click here to sign up.</a></div>
-         </div>
+           </div>
+         </span>
+         <div class="signup-footer">You don't have an account? <a data-target="#signup" href="#signup">Click here to sign up.</a></div>
        </div>
      </div>
    </div>
+ </div>
 
-   <div class="bottom-menu bottom-menu-inverse">
+ <div class="footer">
+  <div class="bottom-menu bottom-menu-inverse">
     <div class="container">
       <div class="row">
 
@@ -181,35 +182,36 @@
       </div>
     </div>
   </div>
-  <!-- Load JS here for greater good =============================-->
-  <script src="static/js/jquery-1.8.3.min.js"></script>
-  <script src="static/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="static/js/jquery.ui.touch-punch.min.js"></script>
-  <script src="static/js/bootstrap.min.js"></script>
-  <script src="static/js/bootstrap-select.js"></script>
-  <script src="static/js/bootstrap-switch.js"></script>
-  <script src="static/js/flatui-checkbox.js"></script>
-  <script src="static/js/flatui-radio.js"></script>
-  <script src="static/js/jquery.tagsinput.js"></script>
-  <script src="static/js/jquery.placeholder.js"></script>
-  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-  <script>
-  (function() {
-    var po = document.createElement('script');
-    po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(po, s);
+</div>
+<!-- Load JS here for greater good =============================-->
+<script src="static/js/jquery-1.8.3.min.js"></script>
+<script src="static/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="static/js/jquery.ui.touch-punch.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/bootstrap-select.js"></script>
+<script src="static/js/bootstrap-switch.js"></script>
+<script src="static/js/flatui-checkbox.js"></script>
+<script src="static/js/flatui-radio.js"></script>
+<script src="static/js/jquery.tagsinput.js"></script>
+<script src="static/js/jquery.placeholder.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<script>
+(function() {
+  var po = document.createElement('script');
+  po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(po, s);
 })();
 
 function render() {
-    gapi.signin.render('customBtn', {
+  gapi.signin.render('customBtn', {
       //'callback': 'signinCallback',
       'clientid': '841077041629.apps.googleusercontent.com',
       'cookiepolicy': 'single_host_origin',
       'requestvisibleactions': 'http://schemas.google.com/AddActivity',
       'scope': 'https://www.googleapis.com/auth/plus.login'
-  });
+    });
 }
 
 </script>
