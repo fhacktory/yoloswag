@@ -184,7 +184,7 @@ input[type="range"]::-webkit-slider-thumb {
     width: 100%;
     height: auto;
     margin: 0 auto;
-    padding: 75px 0 400px 0;
+    padding: 75px 0 300px 0;
     color: white;
     background: url(../images/home.jpg) 50% 0 fixed;
     background-size: 100%;
