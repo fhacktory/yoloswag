@@ -36,9 +36,8 @@ def query_db(query, args=(), one=False):
 
 def addRoad(road):
     cursor = get_db().cursor()
-    r = "INSERT INTO roads(name, points) VALUES (?, ?);"
-    update_db(r, [road["name"], json.dumps(road["tracks"])])
-
+    r = "INSERT INTO roads(name, points, start, end, distance) VALUES (?, ?, ? ,?, ?);"
+    update_db(r, [road["name"], json.dumps(road["tracks"]), road["start"], road["end"], road["distance"]])
 
 
 def getRoad(road_id):
