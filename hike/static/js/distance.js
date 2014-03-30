@@ -35,36 +35,20 @@ function distance_callback(response, status) {
 //    return [dest.distance, dest.duration];
 }
 
-function codeAddress()
+function inRadius(from, marker, radius)
 {
-    var address = document.getElementById('address').value;
-    var radius = parseInt(document.getElementById('radius').value, 10) * 1000;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-	if (status == google.maps.GeocoderStatus.OK) {
-	    map.setCenter(results[0].geometry.location);
-	    var marker = new google.maps.Marker({
-		map: map,
-		position: results[0].geometry.location
-	    });
-	    if (circle) circle.setMap(null);
-	    circle = new google.maps.Circle({center:marker.getPosition(),
-					     radius: radius,
-					     fillOpacity: 0.35,
-					     fillColor: "#FF0000",
-					     map: map});
-	    var bounds = new google.maps.LatLngBounds();
-	    for (var i=0; i<gmarkers.length;i++) {
-		if (google.maps.geometry.spherical.computeDistanceBetween(gmarkers[i].getPosition(),marker.getPosition()) < radius) {
-		    bounds.extend(gmarkers[i].getPosition())
-		    gmarkers[i].setMap(map);
-		} else {
-		    gmarkers[i].setMap(null);
-		}
-	    }
-	    map.fitBounds(bounds);
-
-	} else {
-	    alert('Geocode was not successful for the following reason: ' + status);
-	}
+    var center = new google.maps.Marker({
+	map: map,
+	position: from
     });
+    circle = new google.maps.Circle({center:center.getPosition(),
+				     radius: radius,
+				     fillOpacity: 0.35,
+				     fillColor: "#FF0000",
+				     map: map});
+    var bounds = new google.maps.LatLngBounds();
+    if (google.maps.geometry.spherical.computeDistanceBetween(from, marker) < radius)
+	return true;
+    else
+	return false;
 }

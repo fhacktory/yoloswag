@@ -1,6 +1,4 @@
-var currentPosition;
-
-function geolocation_onError(error){
+function geolocation_onError(error){    
     console.log(error);
 }
 
