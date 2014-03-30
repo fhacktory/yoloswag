@@ -80,8 +80,13 @@ def addUser(user):
     r = ("REPLACE INTO users(name, gender, email) VALUES (?, ?, ?);")
     update_db(r, [user['name'], user['gener'], user['email']])
 
-def getId(idUser):
+def getId(self):
     r = ("SELECT id FROM users WHERE id = ?;")
-    uid = query_db(r, [idUser], one=True)
+    uid = query_db(r, [self], one=True)
     return uid is not None
 
+def getSeek(seek):
+    r = ("SELECT name, points FROM roads WHERE name LIKE (?)")
+    ns = query_db(r, ["%%%s%%" %seek["roads"]] )
+    ns = [n[0] for n in ns]
+    return ns
