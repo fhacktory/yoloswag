@@ -86,11 +86,20 @@ function route_display(track)
     gpaths.push(vpath);
 }
 
-function load_tracks(tracks, radius, distances)
+function load_tracks(tracks, radius, distances, name)
 {
+    console.log(radius);
+    console.log(distances);
+    console.log(name);
+    var regexp = new RegExp('.*' + name + '.*', 'gi');
     $.each(tracks, function(i, track) {
 	start = new google.maps.LatLng(track.start[0], track.start[1]);
-	if ((radius <= 0 || inRadius(currentPosition, start, radius)) 
+	if (name.length > 0){
+	    if (track.name.match(regexp)){
+		route_display(track);
+	    }
+	}   
+	else if ((radius <= 0 || inRadius(currentPosition, start, radius))
 	    && (track.distance >= distances[0] && track.distance <= distances[1]))
 	{
 	    route_display(track);

@@ -42,7 +42,7 @@
 					}
 				});
 			});
-
+/*
 			$(document).ready(function(){
 				var $slider3 = $("#slider3")
 				, slider3ValueMultiplier = 100
@@ -65,6 +65,7 @@
 					});
 				}
 			});
+*/
 			</script>
 		</head>
 		<body>
@@ -110,7 +111,7 @@
 										<div class="col-md-11">
 											<div class="form-group">
 												<div class="input-group">                               
-													<input type="text" class="form-control" placeholder="Search" id="search-query-3">
+													<input type="text" class="form-control" placeholder="Search" id="search-query-3" onchange="refresh()" />
 													<span class="input-group-btn">
 														<button type="submit" class="btn"><span class="fui-search"></span></button>
 													</span>
@@ -120,9 +121,7 @@
 										<div class="col-md-1">
 											<a class="search btn btn-primary popover-top" data-toggle="popover" title="Filters" data-placement="above"><span class="glyphicon glyphicon-filter"></span></a>
 											<div class="popper-content hide">
-												<label>Search zone (KM): </label><input class="slide-search" id="radius" value="250" type="range" min="0" max="1000" />
-												<label>Lenght Min (KM): </label><input id="minDistance" value="50" type="range" min="0" max="500" />
-												<label>Lenght Max (KM): </label><input id="maxDistance" value="50" type="range" min="0" max="500" />
+
 											</div>
 										</div>
 									</div>
@@ -154,6 +153,9 @@
 								</div>
 							</div>
 						</div>
+											  <label>Search zone (KM): </label><input id="radius" value="250" type="range" min="0" max="1000" oninput="document.RADIUS = this.value; refresh()" />
+											  <label>Lenght Min (KM): </label><input id="minDistance" value="0" type="range" min="0" max="500" onchange="document.MIN = this.value; refresh()" />
+											  <label>Lenght Max (KM): </label><input id="maxDistance" value="50" type="range" min="0" max="500" onchange="document.MAX = this.value; refresh()"/>
 					</div>
 
 					<script src="static/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -167,16 +169,23 @@
 					<script src="static/js/jquery.placeholder.js"></script>
 					<script type="text/javascript">
 
-					$("#radius").change(refresh);
-					$("#maxDistance").change(refresh);
-					$("#minDistance").change(refresh);
+
+//$("#radius").slider().on("slideStop", refresh);
+
+//					$("#maxDistance").change(refresh);
+//					$("#minDistance").change(refresh);
+//					$("#search-query-3").change(refresh);
+
 
 					function onLoad()
 					{
-						var tracks = {{tracks|safe}};
-						load_tracks(tracks, parseInt(document.getElementById('radius').value, 10) * 1000, [document.getElementById('minDistance').value, document.getElementById('maxDistance').value]);
-						load_POIs({{POIs|safe}});
-					//    distance_calculate(tracks[2].points, google.maps.TravelMode.DRIVING);
+					    var tracks = {{tracks|safe}};
+					    load_tracks(tracks,
+							document.getElementById('radius').value * 1000,
+							[document.getElementById('minDistance').value, document.getElementById('maxDistance').value],
+							document.getElementById('search-query-3').value);
+					    load_POIs({{POIs|safe}});
+					    //    distance_calculate(tracks[2].points, google.maps.TravelMode.DRIVING);
 					}
 					</script>
 
