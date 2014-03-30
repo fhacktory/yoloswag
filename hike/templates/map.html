@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Flat UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Loading Bootstrap -->
+  <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+  <!-- Loading Flat UI -->
+  <link href="static/css/flat-ui.css" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="shortcut icon" href="static/images/favicon.ico">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <![endif]-->
+      <style type="text/css">
+      #map-canvas { height: 700px; }
+      </style>
+      <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&sensor=true">
+      </script>
+      <script type="text/javascript"
+      src="http://bi.tk:1337/static/js/route.js">
+      </script>
+      <script type="text/javascript"
+      src="http://bi.tk:1337/static/js/poi.js">
+      </script>
+      <script type="text/javascript"
+      src="http://bi.tk:1337/static/js/geolocation.js">
+      </script>
+      <script type="text/javascript"
+      src="http://bi.tk:1337/static/js/elevation.js">
+      </script>
+      <script type="text/javascript">
+      <script type="text/javascript"
+      src="http://bi.tk:1337/static/js/map.js">
+      </script>
+      <script type="text/javascript">
+      $(document).ready(function(){
+        $('.popover-top').popover({
+          placement: 'top',
+          container: 'body',
+          html: true,
+          content: function () {
+            return $(this).next('.popper-content').html();
+          }
+        });
+      });
+
+      $(document).ready(function(){
+        var $slider3 = $("#slider3")
+        , slider3ValueMultiplier = 100
+        , slider3Options;
+
+        if ($slider3.length > 0) {
+          $slider3.slider({
+            min: 1,
+            max: 5,
+            values: [3, 4],
+            orientation: "horizontal",
+            range: true,
+            slide: function(event, ui) {
+              $slider3.find(".ui-slider-value:first")
+              .text("$" + ui.values[0] * slider3ValueMultiplier)
+              .end()
+              .find(".ui-slider-value:last")
+              .text("$" + ui.values[1] * slider3ValueMultiplier);
+            }
+          });
+
+          slider3Options = $slider3.slider("option");
+          $slider3.addSliderSegments(slider3Options.max)
+          .find(".ui-slider-value:first")
+          .text("$" + slider3Options.values[0] * slider3ValueMultiplier)
+          .end()
+          .find(".ui-slider-value:last")
+          .text("$" + slider3Options.values[1] * slider3ValueMultiplier);
+        }
+      });
+</script>
+</head>
+<body>
+  <div id="header">
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">FUCK</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+          <ul class="nav navbar-nav">               
+            <li class="active"><a href="#fakelink">Map</a></li></ul>             
+            <form class="navbar-right">
+              <div class="btn-group select-block">
+                <button class="btn dropdown-toggle clearfix btn-success navbar-btn" data-toggle="dropdown">
+                  <span class="filter-option pull-left">My Profile</span>&nbsp;
+                  <span class="caret"></span>
+                </button>
+                <span class="dropdown-arrow dropdown-arrow-inverse">
+
+                </span>
+                <ul class="dropdown-menu dropdown-inverse" role="menu" style="overflow-y: auto; min-height: 108px; max-height: 914.75px;"><li rel="0" class="selected">
+                  <dt>Profile</dt>
+                  <a tabindex="-1" href="/me" class="opt ">
+                    <span class="pull-left"><a href="/me">My Profile</a></span>
+                  </a>
+                </li>
+                <li rel="4"><a tabindex="-1" href="/logout" class="opt highlighted"><span class="pull-left">Logout</span></a></li></ul></div>           
+              </form>
+            </div><!-- /.navbar-collapse -->
+          </div>
+        </nav>
+      </div><!-- /navbar -->
+
+      <div class="container">
+        <div class="menu-map">
+          <div class="col-md-7">
+            <div class="iconbar iconbar-horizontal iconbar-success">
+              <div class="col-md-10">
+                <div class="form-group">
+                  <div class="input-group">                               
+                    <input type="text" class="form-control" placeholder="Search" id="search-query-3">
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn"><span class="fui-search"></span></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <a class="search btn btn-primary popover-top" data-toggle="popover" title="Popover title" data-placement="above"><span class="glyphicon glyphicon-search"></span></a>
+                <div class="popper-content hide">
+                  <div id="slider3" class="ui-slider">
+                    <span class="ui-slider-value first">$500</span>
+                    <span class="ui-slider-value last">$1000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        {% render view %}
+        <div id="map-canvas"></div>
+        <br/>
+        <div id="elevation_chart"></div>
+        <div id="distance_info"></div>
+      </div>
+
+    </div>
+    <div class="bottom-menu bottom-menu-inverse">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 navbar-brand">
+            <a href="#">FUCK</a>
+          </div>
+
+          <div class="col-md-8">
+            <ul class="bottom-links">
+              <li><a href="#fakelink">About Us</a></li>
+              <li><a href="#fakelink">Store</a></li>
+              <li class="active"><a href="#fakelink">Jobs</a></li>
+              <li><a href="#fakelink">Privacy</a></li>
+              <li><a href="#fakelink">Terms</a></li>
+              <li><a href="#fakelink">Follow Us</a></li>
+              <li><a href="#fakelink">Support</a></li>
+              <li><a href="#fakelink">Links</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-2">
+            <ul class="bottom-icons">
+              <li><a href="#fakelink" class="fui-pinterest"></a></li>
+              <li><a href="#fakelink" class="fui-facebook"></a></li>
+              <li><a href="#fakelink" class="fui-twitter"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </diev>
+
+    <!-- Load JS here for greater good =============================-->
+
+    <script src="static/js/jquery-1.8.3.min.js"></script>
+    <script src="static/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="static/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootstrap-select.js"></script>
+    <script src="static/js/bootstrap-switch.js"></script>
+    <script src="static/js/flatui-checkbox.js"></script>
+    <script src="static/js/flatui-radio.js"></script>
+    <script src="static/js/jquery.tagsinput.js"></script>
+    <script src="static/js/jquery.placeholder.js"></script>
+     <script type="text/javascript">
+      function onLoad()
+      {
+        geolocation_setCurrentPosition();
+        var tracks = {{tracks}};
+        load_tracks(tracks);
+        load_POIs({{POIs|safe}});
+        drawElevation(tracks[2]);
+        distance_calculate(tracks[2], google.maps.TravelMode.DRIVING);
+      }
+
+  </body>
+  </html>

@@ -23,7 +23,7 @@ def logout():
     session.pop('name', '')
     session.pop('family_name', '')
     session.pop('gener', '')
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 
 @app.route('/login')
@@ -59,6 +59,6 @@ def callback():
         session['name'] = r.json().get('name', '')
         session['gener'] = r.json().get('gender', '' )
         sql.addUser(session)
-        return redirect(url_for('index'))
+        return redirect(url_for('map'))
     else:
         return 'ERROR'
