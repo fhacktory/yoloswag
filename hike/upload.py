@@ -40,10 +40,10 @@ def upload():
         return "KO"
 
     road = json.loads(js)
-    road["distance"] = getDist(road["points"])
-    road["start"] = json.dumps(road["points"][0])
-    road["end"] = json.dumps(road["points"][-1])
-    road["elevation"] = backend.calculateElevetionDistance(road["points"])
+    road["distance"] = getDist(road["tracks"])
+    road["start"] = json.dumps(road["tracks"][0])
+    road["end"] = json.dumps(road["tracks"][-1])
+    road["elevation"] = backend.calculateElevetionDistance(road["tracks"])
     sql.addRoad(road)
     return "OK"
 
