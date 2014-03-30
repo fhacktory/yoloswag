@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS roads;
 CREATE TABLE roads(`id`  INTEGER PRIMARY KEY AUTOINCREMENT,
-       	           `name` VARCHAR(512),
-		   `points` BLOB);
+                   `name` VARCHAR(512),
+                   `points` BLOB, start varchar(200), end varchar(200), distance real, level int);
 
 DROP TABLE IF EXISTS pois;
 CREATE TABLE pois(`id`  INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,7 +14,7 @@ CREATE TABLE pois(`id`  INTEGER PRIMARY KEY AUTOINCREMENT,
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(`id`  INTEGER PRIMARY KEY AUTOINCREMENT,
        	           `name` VARCHAR(512),
-		   `email` VARCHAR(512),
+		   `email` VARCHAR(512) UNIQUE,
 		   `gender` VARCHAR(512),
 		   `level` VARCHAR(512),
 		   `age` INTEGER);

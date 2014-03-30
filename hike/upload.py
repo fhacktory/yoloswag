@@ -9,26 +9,51 @@ from hike import app
 from hike import sql
 from pykml import parser
 from flask import request, abort
-#import pykml
-from lxml.etree import XMLSyntaxError
 import json
+import backend
+
+def distance_on_unit_sphere(lat1, long1, lat2, long2):
+    phi1 = math.radians(90.0 - lat1)
+    phi2 = math.radians(90.0 - lat2)
+    theta1 = math.radians(long1)
+    theta2 = math.radians(long2)
+    cos = (math.sin(phi1)*math.sin(phi2)*math.cos(theta1 - theta2) +
+           math.cos(phi1)*math.cos(phi2))
+    arc = math.acos( cos )
+    return arc * 6373
+
+
+def getDist(track):
+    point = track[0]
+    dst = 0.0
+    for t in track[1:]:
+        d = distance_on_unit_sphere(point[0], point[1], t[0], t[1])
+        dst += d
+        point = t
+    return dst
+
 
 @app.route("/upload", methods=["POST"])
 def upload():
-    return ""
-    road = {}
-    road["username"] = request.form.get("username", None)
-    road["kml"] = open("./hike/GR20.kml").read()#request.form.get("kml", None)
+    js = request.form.get("json", None)
+    if js is None:
+        return "KO"
 
-    try:
-        kml = parser.fromstring(road["kml"])
-    except XMLSyntaxError as e:
-        abort(400)
-    track = {}
-    for placemark in kml.Document.Placemark:
-        if hasattr(placemark, "LineString"):
-            pois = [[float(x) for x in c.split(",")] for c in placemark.LineString.coordinates.text.split()]
-            pois = [[p[1], p[0], p[2]] for p in pois]
-            track[placemark.name] = json.dumps(pois)
-    sql.addRoads(track)
-    return(str(track))
+    road = json.loads(js)
+    road["distance"] = getDist(road["points"])
+    road["start"] = json.dumps(road["points"][0])
+    road["end"] = json.dumps(road["points"][-1])
+    road["elevation"] = backend.calculateElevetionDistance(road["points"])
+    sql.addRoad(road)
+    return "OK"
+
+@app.route("/poi", methods=["POST"])
+def addpoi():
+    js = request.form.get("json", None)
+    if js is None:
+        return "KO"
+
+    poi = json.loads(js)
+    sql.addPoi(poi);
+    return "OK"
+
