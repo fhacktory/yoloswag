@@ -49,10 +49,19 @@ def getRoad(road_id):
     return row
 
 def getRoads():
-    r = ('SELECT points '
+    r = ('SELECT name, points, start, end, distance '
          'FROM roads ')
     row = query_db(r)
-    return [json.loads(r[0]) for r in row]
+    l = list()
+    for r in row:
+        road = {}
+        road["name"] = r[0]
+        road["points"] = json.loads(r[1]) if r[1] else ""
+        road["start"] = json.loads(r[2]) if r[2] else ""
+        road["end"] = json.loads(r[3]) if r[3] else ""
+        road["distance"] = r[4]
+        l.append(road)
+    return l
 
 def getPois(road_id):
     Pois = namedtuple("Pois", "position name picture type")
