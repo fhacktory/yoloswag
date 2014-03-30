@@ -35,9 +35,12 @@ def query_db(query, args=(), one=False):
 
 
 def addRoad(road):
-    cursor = get_db().cursor()
     r = "INSERT INTO roads(name, points, start, end, distance) VALUES (?, ?, ? ,?, ?);"
     update_db(r, [road["name"], json.dumps(road["tracks"]), road["start"], road["end"], road["distance"]])
+
+def addPoi(poi):
+    r = "INSERT INTO poi(name, positionm type) VALUES (?, ?, ?);"
+    update_db(r, [poi["title"], json.dumps(road["position"]), road["type"]])
 
 
 def getRoad(road_id):
@@ -63,7 +66,7 @@ def getRoads():
         l.append(road)
     return l
 
-def getPois(road_id):
+def getPois():
     Pois = namedtuple("Pois", "position name picture type")
     r = ('SELECT position, name, picture, type '
          'FROM pois')

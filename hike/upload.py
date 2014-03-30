@@ -53,9 +53,6 @@ def addpoi():
     if js is None:
         return "KO"
 
-    road = json.loads(js)
-    road["position"] = getDist(road["points"])
-    road[""] = json.dumps(road["points"][0])
-    road["end"] = json.dumps(road["points"][-1])
-    road["elevation"] = backend.calculateElevetionDistance(road["points"])
+    poi = json.loads(js)
+    sql.addPoi(poi);
     return "OK"
