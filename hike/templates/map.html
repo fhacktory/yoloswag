@@ -149,7 +149,7 @@
         <br/>
         <div id="elevation_chart"></div>
         <div id="distance_info"></div>
-	<input id="radius" value="250" type="text"/>
+	<input id="radius" value="250" type="range" min="0" max="1000" />
       </div>
 
     </div>
@@ -196,22 +196,16 @@
     <script src="static/js/jquery.tagsinput.js"></script>
     <script src="static/js/jquery.placeholder.js"></script>
     <script type="text/javascript">
-      function load_POIs()
-      {
-        var t_poi = {{POIs|safe}}
-        $.each(t_poi, function(i, poi) {
-         poi_display(poi);
-       });
-      }
+
+$("#radius").change(refresh);
 
 function onLoad()
 {
-    geolocation_setCurrentPosition();
     var tracks = {{tracks|safe}};
     load_tracks(tracks, parseInt(document.getElementById('radius').value, 10) * 1000);
     load_POIs({{POIs|safe}});
-    drawElevation(tracks[2].points);
-    distance_calculate(tracks[2].points, google.maps.TravelMode.DRIVING);
+//    drawElevation(tracks[2].points);
+//    distance_calculate(tracks[2].points, google.maps.TravelMode.DRIVING);
 }
     </script>
 

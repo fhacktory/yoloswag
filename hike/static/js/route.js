@@ -77,6 +77,9 @@ function route_display(track)
     var m_end = make_marker_end(track.points);
     m_start.setMap(map);
     m_end.setMap(map);
+    gmarkers.push(m_start);
+    gmarkers.push(m_end);
+    gpaths.push(path);
 }
 
 function load_tracks(tracks, radius)

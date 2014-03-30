@@ -3,8 +3,8 @@ function geolocation_onError(error){
 }
 
 function geolocation_onSuccess(position){
-    currentPosition = position.coords;
-    map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+    currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    map.panTo(currentPosition);
     map.setZoom(15);
     var marker = new google.maps.Marker({
 	draggable:false,
@@ -13,6 +13,7 @@ function geolocation_onSuccess(position){
         title: "You"
     });
     marker.setMap(map);
+    gmarkers.push(marker);
 }
 
 function geolocation_setCurrentPosition()

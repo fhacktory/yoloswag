@@ -37,15 +37,17 @@ function distance_callback(response, status) {
 
 function inRadius(from, marker, radius)
 {
-    var center = new google.maps.Marker({
-	map: map,
-	position: from
-    });
-//    circle = new google.maps.Circle({center:center.getPosition(),
+//    var center = new google.maps.Marker({
+//	map: map,
+//	position: from
+//    });
+//    circle = new google.maps.Circle({center:from,
 //				     radius: radius,
-//				     fillOpacity: 0.35,
+//				     fillOpacity: 0,
 //				     fillColor: "#FF0000",
-//				     map: map});
+//				     map: map,
+//				     icon: 'none'
+//				    });
     var bounds = new google.maps.LatLngBounds();
     var dist = google.maps.geometry.spherical.computeDistanceBetween(from, marker);
     if (dist < radius)
