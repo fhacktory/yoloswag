@@ -1,8 +1,11 @@
+var currentPosition;
+
 function geolocation_onError(error){
     console.log(error);
 }
 
 function geolocation_onSuccess(position){
+    currentPosition = position.coords;
     map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
     map.setZoom(15);
     var marker = new google.maps.Marker({
