@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hikeathon</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    
+    <string name="TitleDefault">Enter title</string>
+    <string name="CommentDefault">Enter comment</string>
+    
+    <string-array name="pov_array">
+        <item>Point of Interest</item>
+        <item>Point of View</item>
+        <item>Source</item>
+        <item>Watertap</item>
+        <item>Pass</item>
+        <item>Summit</item>
+        <item>Parking</item>
+    </string-array>
+
+</resources>
