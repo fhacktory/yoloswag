@@ -79,9 +79,11 @@ function route_display(track)
     m_end.setMap(map);
 }
 
-function load_tracks(tracks)
+function load_tracks(tracks, radius)
 {
     $.each(tracks, function(i, track) {
-	route_display(track);
+	start = new google.maps.LatLng(track.start[0], track.start[1]);
+	if (radius <= 0 || inRadius(currentPosition, start, radius))
+	    route_display(track);
     });
 }

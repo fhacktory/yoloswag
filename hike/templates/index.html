@@ -17,7 +17,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript"
-	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&sensor=true">
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&libraries=geometry&sensor=true">
     </script>
     <script type="text/javascript"
 	    src="static/js/route.js">
@@ -44,7 +44,8 @@ function onLoad()
 {
     geolocation_setCurrentPosition();
     var tracks = {{tracks}};
-    load_tracks(tracks);
+//    load_tracks(tracks, parseInt(document.getElementById('radius').value, 10) * 1000);
+load_tracks(tracks, 10);
     load_POIs({{POIs|safe}});
     drawElevation(tracks[2]);
     distance_calculate(tracks[2], google.maps.TravelMode.DRIVING);
