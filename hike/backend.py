@@ -9,7 +9,6 @@ API_KEY = "AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4"
 
 @app.route('/elevation/<int:route>')
 def calculateElevetionDistance(route):
-    route = json.loads(sql.getRoad(route))
     locations = []
     while len(route) > 256:
         route = route[::2]
