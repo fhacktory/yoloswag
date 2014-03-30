@@ -15,6 +15,7 @@ import json
 
 @app.route("/upload", methods=["POST"])
 def upload():
+    return ""
     road = {}
     road["username"] = request.form.get("username", None)
     road["kml"] = open("./hike/GR20.kml").read()#request.form.get("kml", None)
