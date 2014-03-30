@@ -1,4 +1,6 @@
+
 <!DOCTYPE html>
+<html>
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
@@ -10,6 +12,7 @@
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <!-- Optional theme -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">  
 
     <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -55,8 +58,35 @@
        });
     }
 
+=======
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript"
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&sensor=true">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/route.js">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/poi.js">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/geolocation.js">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/distance.js">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/elevation.js">
+    </script>
+    <script type="text/javascript"
+	    src="static/js/map.js">
+>>>>>>> dev
     </script>
 
+<<<<<<< HEAD
     <style type="text/css">
     #intro { 
         background: url(static/images/intro.png) 50% 0 fixed; 
@@ -246,5 +276,27 @@ function render() {
 }
 
 
+=======
+
+function onLoad()
+{
+    geolocation_setCurrentPosition();
+    var tracks = {{tracks}};
+    load_tracks(tracks);
+    load_POIs({{POIs|safe}});
+    drawElevation(tracks[2]);
+    distance_calculate(tracks[2], google.maps.TravelMode.DRIVING);
+}
+
+
+</script>
+</head>
+<body>
+    {% include view %}
+    <div id="map-canvas"></div>
+    <br/>
+    <div id="elevation_chart"></div>
+    <div id="distance_info"></div>
+>>>>>>> dev
 </body>
 </html>
