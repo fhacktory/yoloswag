@@ -40,7 +40,7 @@ def addRoad(road):
 
 def addPoi(poi):
     r = "INSERT INTO poi(name, positionm type) VALUES (?, ?, ?);"
-    update_db(r, [poi["title"], json.dumps(poi["position"]), poi["type"]])
+    update_db(r, [poi["title"], json.dumps(poi["position"]), int(poi["type"])])
 
 
 def getRoad(road_id):
