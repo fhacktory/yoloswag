@@ -23,11 +23,11 @@ function refresh()
     console.log("REFRESSH");
     $.each(gpaths, function(i, path) {
 	path.setMap(null);
-//	delete path;
+	delete path;
     });
     $.each(gmarkers, function(i, mark) {
 	mark.setMap(null);
-//	delete mark;
+	delete mark;
     });
     console.log("RELOAD");
     onLoad();
