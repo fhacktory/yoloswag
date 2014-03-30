@@ -24,4 +24,5 @@ def index():
 @app.route("/test")
 def test():
     pois = json.dumps(sql.getPois(1))
-    return render_template("index.html", tracks=sql.getRoads(), POIs=pois, view="home.html")
+    roads = json.dumps(sql.getRoads())
+    return render_template("index.html", tracks=roads, POIs=pois, view="home.html")

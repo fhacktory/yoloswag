@@ -41,13 +41,14 @@ function inRadius(from, marker, radius)
 	map: map,
 	position: from
     });
-    circle = new google.maps.Circle({center:center.getPosition(),
-				     radius: radius,
-				     fillOpacity: 0.35,
-				     fillColor: "#FF0000",
-				     map: map});
+//    circle = new google.maps.Circle({center:center.getPosition(),
+//				     radius: radius,
+//				     fillOpacity: 0.35,
+//				     fillColor: "#FF0000",
+//				     map: map});
     var bounds = new google.maps.LatLngBounds();
-    if (google.maps.geometry.spherical.computeDistanceBetween(from, marker) < radius)
+    var dist = google.maps.geometry.spherical.computeDistanceBetween(from, marker);
+    if (dist < radius)
 	return true;
     else
 	return false;

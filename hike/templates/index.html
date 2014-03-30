@@ -43,12 +43,11 @@
 function onLoad()
 {
     geolocation_setCurrentPosition();
-    var tracks = {{tracks}};
-//    load_tracks(tracks, parseInt(document.getElementById('radius').value, 10) * 1000);
-load_tracks(tracks, 10);
+    var tracks = {{tracks|safe}};
+    load_tracks(tracks, parseInt(document.getElementById('radius').value, 10) * 1000);
     load_POIs({{POIs|safe}});
-    drawElevation(tracks[2]);
-    distance_calculate(tracks[2], google.maps.TravelMode.DRIVING);
+    drawElevation(tracks[2].points);
+    distance_calculate(tracks[2].points, google.maps.TravelMode.DRIVING);
 }
 
 
@@ -60,5 +59,6 @@ load_tracks(tracks, 10);
     <br/>
     <div id="elevation_chart"></div>
     <div id="distance_info"></div>
+    <input id="radius" value="250000" type="hidden" />
 </body>
 </html>
