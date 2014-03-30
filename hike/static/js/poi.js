@@ -42,6 +42,7 @@ function poi_display(poi)
         title: poi.name
     });
     marker.setMap(map);
+    gmarkers.push(marker);
 }
 
 function load_POIs(pois)

@@ -30,3 +30,8 @@ def map():
     pois = json.dumps(sql.getPois())
     roads = json.dumps(sql.getRoads())
     return render_template("map.html", tracks=roads, POIs=pois)
+
+@app.route("/getMaps")
+def getmaps():
+    roads = json.dumps(sql.getRoads())
+    return roads

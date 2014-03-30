@@ -11,6 +11,7 @@ from pykml import parser
 from flask import request, abort
 import json
 import backend
+import math
 
 def distance_on_unit_sphere(lat1, long1, lat2, long2):
     phi1 = math.radians(90.0 - lat1)
@@ -40,10 +41,10 @@ def upload():
         return "KO"
 
     road = json.loads(js)
-    road["distance"] = getDist(road["points"])
-    road["start"] = json.dumps(road["points"][0])
-    road["end"] = json.dumps(road["points"][-1])
-    road["elevation"] = backend.calculateElevetionDistance(road["points"])
+    road["distance"] = getDist(road["tracks"])
+    road["start"] = json.dumps(road["tracks"][0])
+    road["end"] = json.dumps(road["tracks"][-1])
+    road["elevation"] = backend.calculateElevetionDistance(road["tracks"])
     sql.addRoad(road)
     return "OK"
 
@@ -56,4 +57,3 @@ def addpoi():
     poi = json.loads(js)
     sql.addPoi(poi);
     return "OK"
-

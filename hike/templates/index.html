@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Hikeathon ~ We came out of out path.</title>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-  <style type="text/css">
-  html { height: 100% }
-  body { height: 100%; margin: 0; padding: 0 }
-  #map-canvas { height: 100% }
-  </style>
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -28,7 +24,7 @@
       <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="https://www.google.com/jsapi"></script>
       <script type="text/javascript"
-	      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&libraries=geometry&sensor=true">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmjJxc44nSySOq2L1oan1jEmJkl4pc7i4&libraries=geometry&sensor=true">
       </script>
       <script type="text/javascript"
       src="static/js/route.js">
@@ -66,45 +62,6 @@
       </script>
     </script>
 
-    <style type="text/css">
-    #intro { 
-      background: url(static/images/intro.png) 50% 0 fixed; 
-      height: auto;  
-      margin: 0 auto; 
-      width: 100%; 
-      position: relative; 
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
-      padding: 100px 0;
-    }
-    #home { 
-      background: url(static/images/home.jpg) 50% 0 fixed; 
-      background-size: 100%;
-      height: auto;  
-      margin: 0 auto; 
-      width: 100%; 
-      position: relative; 
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
-      padding: 200px 0;
-      color:white;
-    }
-
-    #home h2 {
-      font-weight: 300;
-    }
-
-    #about { 
-      background: white;
-      height: auto;
-      margin: 0 auto; 
-      width: 100%; 
-      position: relative; 
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
-      padding: 100px 0;
-      color: #000;
-    }
-
-    </style>
-
   </head>
 
   <body>
@@ -112,9 +69,9 @@
     <section id="home" data-speed="4" data-type="background">
       <div class="container text-center">
         <h2><u>People</u> need your <i>experiences</i><br>⤷ Become an <strong>explorer</strong>. ও</h2><br>
-        <button class="btn btn-success navbar-btn" type="button" data-toggle="modal" data-target="#myModal">Create a free account now »</button>
-        <br><button class="btn btn-danger navbar-btn" type="button" data-toggle="modal" data-target="#myModal">SigIn »</button>
-        <br><br><button class="btn btn-info navbar-btn" type="button" data-toggle="modal" data-target="#myModal">Get the Free App »</button>
+        <button class="btn btn-success navbar-btn" type="button" data-toggle="modal" data-target="#signup">Create a free account now »</button>
+        <br><a href="#" type="button" data-toggle="modal" data-target="#signin" style="color:white;">Or SigIn now</a>
+        <br><br><a class="btn btn-info navbar-btn" type="button" type="button" data-toggle="modal" href="#">Get the Free App »</a>
 
         <div class="social-home">
           <button class="btn btn-social-facebook"><i class="fui-facebook"></i></button>
@@ -125,8 +82,8 @@
         </div>
       </div>
     </section>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- SignUp -->
+    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-body text-center">
@@ -136,7 +93,7 @@
               <div id="gSignInWrapper">
                 <div id="customBtn" class="customGPlusSignIn">
                  <span class="icon"></span>
-                 <span class="buttonText"><a href="/login">Sign up using Google +</a></span>
+                 <span class="buttonText"><a style="color:white;" href="/login">Sign Up using Google +</a></span>
                </div>
              </div>
            </span>
@@ -146,85 +103,78 @@
      </div>
    </div>
 
-   <div class="bottom-menu bottom-menu-inverse">
+   <!-- SignIn -->
+   <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div class="signup-title" id="myModalLabel">Login</div>
+          <span class="signup-subtitle">Quick Sign In</span>
+          <span id="signinButton">
+            <div id="gSignInWrapper">
+              <div id="customBtn" class="customGPlusSignIn">
+               <span class="icon"></span>
+               <span class="buttonText"><a style="color:white;" href="/login">Sign In using Google +</a></span>
+             </div>
+           </div>
+         </span>
+         <div class="signup-footer">You don't have an account? <a data-target="#signup" href="#signup">Click here to sign up.</a></div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+ <div class="footer">
+  <div class="bottom-menu bottom-menu-inverse">
     <div class="container">
       <div class="row">
-        <div class="col-md-2 navbar-brand">
-          <a href="#">FUCK</a>
-        </div>
 
-        <div class="col-md-8">
+        <div class="col-md-3">
           <ul class="bottom-links">
-            <li><a href="#fakelink">About Us</a></li>
-            <li><a href="#fakelink">Store</a></li>
-            <li class="active"><a href="#fakelink">Jobs</a></li>
-            <li><a href="#fakelink">Privacy</a></li>
-            <li><a href="#fakelink">Terms</a></li>
-            <li><a href="#fakelink">Follow Us</a></li>
-            <li><a href="#fakelink">Support</a></li>
-            <li><a href="#fakelink">Links</a></li>
+            <li><a href="https://twitter.com/search?q=%23fhacktory&src=hash">#Fhacktory 2K14</a></li>
           </ul>
         </div>
-
-        <div class="col-md-2">
-          <ul class="bottom-icons">
-            <li><a href="#fakelink" class="fui-pinterest"></a></li>
-            <li><a href="#fakelink" class="fui-facebook"></a></li>
-            <li><a href="#fakelink" class="fui-twitter"></a></li>
+        <div class="col-md-6"></div>
+        <div class="col-md-3 navbar-brand">
+          <ul class="bottom-links">
+            <li style="font-size:14px;font-weight:200;"><a href="#fakelink"><strong>F</strong>ancy. <strong>U</strong>nicorn. <strong>C</strong>rew. <strong>K</strong>ilimanjaro</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-  <!-- Load JS here for greater good =============================-->
-  <script src="static/js/jquery-1.8.3.min.js"></script>
-  <script src="static/js/jquery-ui-1.10.3.custom.min.js"></script>
-  <script src="static/js/jquery.ui.touch-punch.min.js"></script>
-  <script src="static/js/bootstrap.min.js"></script>
-  <script src="static/js/bootstrap-select.js"></script>
-  <script src="static/js/bootstrap-switch.js"></script>
-  <script src="static/js/flatui-checkbox.js"></script>
-  <script src="static/js/flatui-radio.js"></script>
-  <script src="static/js/jquery.tagsinput.js"></script>
-  <script src="static/js/jquery.placeholder.js"></script>
-  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-  <script>
-  (function() {
-    var po = document.createElement('script');
-    po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(po, s);
+</div>
+<!-- Load JS here for greater good =============================-->
+<script src="static/js/jquery-1.8.3.min.js"></script>
+<script src="static/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="static/js/jquery.ui.touch-punch.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/bootstrap-select.js"></script>
+<script src="static/js/bootstrap-switch.js"></script>
+<script src="static/js/flatui-checkbox.js"></script>
+<script src="static/js/flatui-radio.js"></script>
+<script src="static/js/jquery.tagsinput.js"></script>
+<script src="static/js/jquery.placeholder.js"></script>
+<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<script>
+(function() {
+  var po = document.createElement('script');
+  po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(po, s);
 })();
 
 function render() {
-    gapi.signin.render('customBtn', {
+  gapi.signin.render('customBtn', {
       //'callback': 'signinCallback',
       'clientid': '841077041629.apps.googleusercontent.com',
       'cookiepolicy': 'single_host_origin',
       'requestvisibleactions': 'http://schemas.google.com/AddActivity',
       'scope': 'https://www.googleapis.com/auth/plus.login'
-  });
-}
-
-function onLoad()
-{
-    geolocation_setCurrentPosition();
-    var tracks = {{tracks|safe}};
-    load_tracks(tracks, parseInt(document.getElementById('radius').value, 10) * 1000);
-    load_POIs({{POIs|safe}});
-//    drawElevation(tracks[2].points);
-//    distance_calculate(tracks[2].points, google.maps.TravelMode.DRIVING);
+    });
 }
 
 </script>
-</head>
-<body>
-    <div id="map-canvas"></div>
-    <br/>
-    <div id="elevation_chart"></div>
-    <div id="distance_info"></div>
-    <input id="radius" value="250" type="text"/>
-
 </body>
 </html>
