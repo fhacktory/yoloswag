@@ -14,7 +14,7 @@ CREATE TABLE pois(`id`  INTEGER PRIMARY KEY AUTOINCREMENT,
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(`id`  INTEGER PRIMARY KEY AUTOINCREMENT,
        	           `name` VARCHAR(512),
-		   `email` VARCHAR(512),
+		   `email` VARCHAR(512) UNIQUE,
 		   `gender` VARCHAR(512),
 		   `level` VARCHAR(512),
 		   `age` INTEGER);

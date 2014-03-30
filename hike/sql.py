@@ -34,11 +34,11 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 
-def addRoads(roads):
-    for road_name,track in roads.iteritems():
-        cursor = get_db().cursor()
-        r = "INSERT INTO roads(name, points) VALUES (?, ?);"
-        update_db(r, [str(road_name), str(track)])
+def addRoad(road):
+    cursor = get_db().cursor()
+    r = "INSERT INTO roads(name, points) VALUES (?, ?);"
+    update_db(r, [road["name"], json.dumps(road["tracks"])])
+
 
 
 def getRoad(road_id):
@@ -47,7 +47,7 @@ def getRoad(road_id):
          'WHERE id = ? '
          'LIMIT 1 ')
     row = query_db(r, [road_id], one=True)
-    return row[0]
+    return row
 
 def getRoads():
     r = ('SELECT points '
@@ -66,5 +66,16 @@ def getPois(road_id):
     return pois
 
 def addUser(user):
-    r = "INSERT INTO users(name, gender, email) VALUES (?, ?, ?);"
+    r = ("REPLACE INTO users(name, gender, email) VALUES (?, ?, ?);")
     update_db(r, [user['name'], user['gener'], user['email']])
+
+def getId(self):
+    r = ("SELECT id FROM users WHERE id = ?;")
+    uid = query_db(r, [self], one=True)
+    return uid is not None
+
+def getSeek(seek):
+    r = ("SELECT name, points FROM roads WHERE name LIKE (?)")
+    ns = query_db(r, ["%%%s%%" %seek["roads"]] )
+    ns = [n[0] for n in ns]
+    return ns
