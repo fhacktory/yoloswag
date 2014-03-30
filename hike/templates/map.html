@@ -150,6 +150,7 @@
         <div id="elevation_chart"></div>
         <div id="distance_info"></div>
 	<input id="radius" value="250" type="range" min="0" max="1000" />
+	<input id="minDistance" value="50" type="range" min="0" max="500" />
 	<input id="maxDistance" value="50" type="range" min="0" max="500" />
       </div>
 
@@ -200,11 +201,12 @@
 
 $("#radius").change(refresh);
 $("#maxDistance").change(refresh);
+$("#minDistance").change(refresh);
 
 function onLoad()
 {
     var tracks = {{tracks|safe}};
-    load_tracks(tracks, parseInt(document.getElementById('radius').value, 10) * 1000, document.getElementById('maxDistance').value);
+    load_tracks(tracks, parseInt(document.getElementById('radius').value, 10) * 1000, [document.getElementById('minDistance').value, odocument.getElementById('maxDistance').value]);
     load_POIs({{POIs|safe}});
 //    drawElevation(tracks[2].points);
 //    distance_calculate(tracks[2].points, google.maps.TravelMode.DRIVING);

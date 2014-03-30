@@ -82,11 +82,12 @@ function route_display(track)
     gpaths.push(path);
 }
 
-function load_tracks(tracks, radius, maxDistance)
+function load_tracks(tracks, radius, distances)
 {
     $.each(tracks, function(i, track) {
 	start = new google.maps.LatLng(track.start[0], track.start[1]);
-	if ((radius <= 0 || inRadius(currentPosition, start, radius)) && track.distance <= maxDistance)
+	if ((radius <= 0 || inRadius(currentPosition, start, radius)) 
+	    && (track.distance >= distances[0] && track.distance <= distances[1]))
 	{
 	    route_display(track);
 	}
