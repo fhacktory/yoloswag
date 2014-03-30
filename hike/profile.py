@@ -4,6 +4,6 @@ import sqlite3
 
 @app.route('/user/')
 def user_profile():
-	return render_template("index.html", view="profile.html")
+	return render_template("map.html", view="profile.html")
 
  

@@ -6,7 +6,7 @@ import sql
 
 # app.secret_key = 'iwonttellyou'
 
-redirect_uri = 'http://127.0.0.1:1337/login/google/auth'
+redirect_uri = 'http://bi.tk:1337/login/google/auth'
 client_id = '876045027884-ttf6o8eppj60soeppordc3nkko4h09fg.apps.googleusercontent.com'  # get from https://code.google.com/apis/console
 client_secret = 'lcz3HMPx_QMDz2LNzbpcVHFy'
 
@@ -23,7 +23,7 @@ def logout():
     session.pop('name', '')
     session.pop('family_name', '')
     session.pop('gener', '')
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 
 @app.route('/login')
@@ -59,6 +59,6 @@ def callback():
         session['name'] = r.json().get('name', '')
         session['gener'] = r.json().get('gender', '' )
         sql.addUser(session)
-        return redirect(url_for('index'))
+        return redirect(url_for('map'))
     else:
         return 'ERROR'

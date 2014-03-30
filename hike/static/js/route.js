@@ -81,6 +81,7 @@ function route_display(track)
 
 function load_tracks(tracks, radius)
 {
+    console.log(map);
     $.each(tracks, function(i, track) {
 	start = new google.maps.LatLng(track.start[0], track.start[1]);
 	if (radius <= 0 || inRadius(currentPosition, start, radius))
