@@ -123,6 +123,9 @@
 											<a class="search btn btn-primary popover-top" data-toggle="popover" title="Filters" data-placement="above"><span class="glyphicon glyphicon-filter"></span></a>
 											<div class="popper-content hide">
 <!-- INPUT HERE -->
+											  <label>Search zone (KM): </label><input id="radius2" value="250" type="range" min="0" max="1000" oninput="document.RADIUS = this.value; refresh()" />
+											  <label>Lenght Min (KM): </label><input id="minDistance2" value="0" type="range" min="0" max="500" onchange="document.MIN = this.value; refresh()" />
+											  <label>Lenght Max (KM): </label><input id="maxDistance2" value="50" type="range" min="0" max="500" onchange="document.MAX = this.value; refresh()"/>
 											</div>
 
 										</div>
