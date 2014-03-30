@@ -65,21 +65,25 @@ function make_marker_end(track)
 function route_display(track)
 {
     var route = json_to_coord(track.points);
-    var path = new google.maps.Polyline({
+    var vpath = new google.maps.Polyline({
 	path: route,
 	geodesic: true,
 	strokeColor: '#0000FF',
 	strokeOpacity: 0.8,
-	strokeWeight: 4
+	strokeWeight: 4,
+	id_track: track.id
     });
-    path.setMap(map);
+    vpath.setMap(map);
+    google.maps.event.addListener(vpath, 'click', function() {
+	drawElevation(vpath.getPath());
+    });
     var m_start = make_marker_start(track.points);
     var m_end = make_marker_end(track.points);
     m_start.setMap(map);
     m_end.setMap(map);
     gmarkers.push(m_start);
     gmarkers.push(m_end);
-    gpaths.push(path);
+    gpaths.push(vpath);
 }
 
 function load_tracks(tracks, radius, distances)

@@ -5,9 +5,11 @@ function drawElevation(path) {
 
   // Create a new chart in the elevation_chart DIV.
     chart = new google.visualization.LineChart(document.getElementById('elevation_chart'));
-
+    var a = path.j
+    while (a.length > 256)
+	a = a.filter(function(item, i){return (i % 2);});
     var pathRequest = {
-	'path': json_to_coord(path),
+	'path': a,
 	'samples': 256
     }
     elevator.getElevationAlongPath(pathRequest, plotElevation);
